@@ -14,6 +14,17 @@
 		C25DDDE427886817005E43CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDE227886817005E43CD /* Main.storyboard */; };
 		C25DDDE627886818005E43CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDE527886818005E43CD /* Assets.xcassets */; };
 		C25DDDE927886818005E43CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDE727886818005E43CD /* LaunchScreen.storyboard */; };
+		C25DDDF127886B65005E43CD /* explosion.caf in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDEF27886B65005E43CD /* explosion.caf */; };
+		C25DDDF227886B65005E43CD /* launch.caf in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDF027886B65005E43CD /* launch.caf */; };
+		C25DDDF727886B75005E43CD /* sliceBombFuse.caf in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDF327886B75005E43CD /* sliceBombFuse.caf */; };
+		C25DDDF827886B75005E43CD /* sliceHitEnemy.sks in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDF427886B75005E43CD /* sliceHitEnemy.sks */; };
+		C25DDDF927886B75005E43CD /* sliceHitBomb.sks in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDF527886B75005E43CD /* sliceHitBomb.sks */; };
+		C25DDDFA27886B75005E43CD /* sliceFuse.sks in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDF627886B75005E43CD /* sliceFuse.sks */; };
+		C25DDE0027886B84005E43CD /* wrong.caf in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDFB27886B84005E43CD /* wrong.caf */; };
+		C25DDE0127886B84005E43CD /* swoosh3.caf in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDFC27886B84005E43CD /* swoosh3.caf */; };
+		C25DDE0227886B84005E43CD /* swoosh2.caf in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDFD27886B84005E43CD /* swoosh2.caf */; };
+		C25DDE0327886B84005E43CD /* whack.caf in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDFE27886B84005E43CD /* whack.caf */; };
+		C25DDE0427886B84005E43CD /* swoosh1.caf in Resources */ = {isa = PBXBuildFile; fileRef = C25DDDFF27886B84005E43CD /* swoosh1.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +36,17 @@
 		C25DDDE327886817005E43CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C25DDDE527886818005E43CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C25DDDE827886818005E43CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C25DDDEF27886B65005E43CD /* explosion.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = explosion.caf; sourceTree = "<group>"; };
+		C25DDDF027886B65005E43CD /* launch.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = launch.caf; sourceTree = "<group>"; };
+		C25DDDF327886B75005E43CD /* sliceBombFuse.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sliceBombFuse.caf; sourceTree = "<group>"; };
+		C25DDDF427886B75005E43CD /* sliceHitEnemy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sliceHitEnemy.sks; sourceTree = "<group>"; };
+		C25DDDF527886B75005E43CD /* sliceHitBomb.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sliceHitBomb.sks; sourceTree = "<group>"; };
+		C25DDDF627886B75005E43CD /* sliceFuse.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = sliceFuse.sks; sourceTree = "<group>"; };
+		C25DDDFB27886B84005E43CD /* wrong.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = wrong.caf; sourceTree = "<group>"; };
+		C25DDDFC27886B84005E43CD /* swoosh3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = swoosh3.caf; sourceTree = "<group>"; };
+		C25DDDFD27886B84005E43CD /* swoosh2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = swoosh2.caf; sourceTree = "<group>"; };
+		C25DDDFE27886B84005E43CD /* whack.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whack.caf; sourceTree = "<group>"; };
+		C25DDDFF27886B84005E43CD /* swoosh1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = swoosh1.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +84,17 @@
 				C25DDDDE27886817005E43CD /* GameScene.swift */,
 				C25DDDE027886817005E43CD /* GameViewController.swift */,
 				C25DDDE227886817005E43CD /* Main.storyboard */,
+				C25DDDEF27886B65005E43CD /* explosion.caf */,
+				C25DDDF027886B65005E43CD /* launch.caf */,
+				C25DDDF327886B75005E43CD /* sliceBombFuse.caf */,
+				C25DDDF627886B75005E43CD /* sliceFuse.sks */,
+				C25DDDF527886B75005E43CD /* sliceHitBomb.sks */,
+				C25DDDF427886B75005E43CD /* sliceHitEnemy.sks */,
+				C25DDDFF27886B84005E43CD /* swoosh1.caf */,
+				C25DDDFD27886B84005E43CD /* swoosh2.caf */,
+				C25DDDFC27886B84005E43CD /* swoosh3.caf */,
+				C25DDDFE27886B84005E43CD /* whack.caf */,
+				C25DDDFB27886B84005E43CD /* wrong.caf */,
 				C25DDDE527886818005E43CD /* Assets.xcassets */,
 				C25DDDE727886818005E43CD /* LaunchScreen.storyboard */,
 			);
@@ -126,10 +159,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C25DDDF927886B75005E43CD /* sliceHitBomb.sks in Resources */,
 				C25DDDE427886817005E43CD /* Main.storyboard in Resources */,
+				C25DDDF227886B65005E43CD /* launch.caf in Resources */,
 				C25DDDDB27886817005E43CD /* GameScene.sks in Resources */,
+				C25DDDF827886B75005E43CD /* sliceHitEnemy.sks in Resources */,
+				C25DDE0127886B84005E43CD /* swoosh3.caf in Resources */,
+				C25DDDF127886B65005E43CD /* explosion.caf in Resources */,
 				C25DDDE627886818005E43CD /* Assets.xcassets in Resources */,
+				C25DDDFA27886B75005E43CD /* sliceFuse.sks in Resources */,
+				C25DDE0327886B84005E43CD /* whack.caf in Resources */,
+				C25DDDF727886B75005E43CD /* sliceBombFuse.caf in Resources */,
+				C25DDE0427886B84005E43CD /* swoosh1.caf in Resources */,
+				C25DDE0027886B84005E43CD /* wrong.caf in Resources */,
 				C25DDDE927886818005E43CD /* LaunchScreen.storyboard in Resources */,
+				C25DDE0227886B84005E43CD /* swoosh2.caf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +341,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -308,7 +352,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -325,7 +369,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -336,7 +380,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
