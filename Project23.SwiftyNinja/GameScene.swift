@@ -1,7 +1,7 @@
 //
 //  GameScene.swift
 //  Project23.SwiftyNinja
-//
+//  Days 77-79
 //  Created by Igor Polousov on 07.01.2022.
 //
 
@@ -404,7 +404,7 @@ class GameScene: SKScene {
         life.run(SKAction.scaleX(to: 1, duration: 0.1))
     }
     
-    // Отслеживает изменения в процессе игры
+    // Отслеживает изменения в процессе игры: если игрок попал на пингвина, то убрать пингвина и уменьшить количество жизней, запустить следующую очередь с enemy, проверить бомбы, и если нет, то отключить звук фитиля
     override func update(_ currentTime: TimeInterval) {
         // Если количество enemy больше 0 и если enemy это пингвин и он вышел за пределы экрана, то уменьшить количество жизней и удалить ноду
         if activeEnemies.count > 0 {
