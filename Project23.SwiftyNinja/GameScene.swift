@@ -79,6 +79,12 @@ class GameScene: SKScene {
     // Закончилась игра или нет
     var isGameEnded = false
     
+    // Task 1
+    var penguin: SKSpriteNode!
+    var bomb: SKSpriteNode!
+    // Task 3
+    var gameOverLabel: SKLabelNode!
+    
     // Основной метод при загрузке игры
     override func didMove(to view: SKView) {
         // Установлен фон игрового поля
@@ -240,6 +246,14 @@ class GameScene: SKScene {
             livesImages[1].texture = SKTexture(imageNamed: "sliceLifeGone")
             livesImages[2].texture = SKTexture(imageNamed: "sliceLifeGone")
         }
+        gameOverLabel = SKLabelNode(fontNamed: "Chalkduster")
+        gameOverLabel.fontSize = 240
+        gameOverLabel.fontColor = .blue
+        gameOverLabel.text = "Game Over"
+        gameOverLabel.position = CGPoint(x: 500, y: 384)
+        addChild(gameOverLabel)
+        let scaleOut = SKAction.scale(to: 0.5, duration: 0.5)
+        gameOverLabel.run(scaleOut)
     }
     
     // Проигрывание звука взмаха ножа: выбирается случайным образом один из трех звуков
@@ -304,27 +318,34 @@ class GameScene: SKScene {
     
     // Создание врага(предмета на экране): выбирается создать пингвина или бомбу в зависимости от принятого параметра, задается положение появления, скорость вращения, направление движения
     func createEnemy(forceBomb: ForceBomb = .random) {
+        
+        penguin = SKSpriteNode(imageNamed: "penguin")
+        penguin.name = "penguin"
+        
+        bomb = SKSpriteNode(imageNamed: "sliceBomb")
+        bomb.name = "bomb"
+        
         let enemy: SKSpriteNode
         //ХЗ зачем было указано от 0 до 6
-        var enemyType = Int.random(in: 0...6)
+        var enemyType = SKSpriteNode()
         // Если запустить бомбу указано как never то тип enemy будет 1
         if forceBomb == .never {
-            enemyType = 1
+            enemyType = penguin
         // Если запустить бомбу указано как always то тип врага будет 0 - бомба
         } else if forceBomb == .always {
-            enemyType = 0
+            enemyType = bomb
         }
         // Если бомба
-        if enemyType == 0 {
+        if enemyType == bomb {
             // Создали ноду enemy(предмет) как контейнер для бомбы, контейнер нужен чтобы в дальнейшем создать ноду бомбы и к ней добавить анимацию огонька на фитиле
             enemy = SKSpriteNode()
             enemy.zPosition = 1
             enemy.name = "bombContainer"
             // Создали ноду бомбы
-            let bombImage = SKSpriteNode(imageNamed: "sliceBomb")
-            bombImage.name = "bomb"
+//            let bombImage = SKSpriteNode(imageNamed: "sliceBomb")
+//            bombImage.name = "bomb"
             // Добавили к ноде enemy
-            enemy.addChild(bombImage)
+            enemy.addChild(bomb)
             // Убрали звук бомбы
             if bombSoundEffect != nil {
                 bombSoundEffect?.stop()
@@ -346,7 +367,7 @@ class GameScene: SKScene {
             
         } else {
             // Если не бомба, то создать пингвина
-            enemy = SKSpriteNode(imageNamed: "penguin")
+            enemy = penguin
             run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
             enemy.name = "enemy"
         }
