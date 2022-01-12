@@ -9,8 +9,8 @@ import AVFoundation
 import SpriteKit
 
 // Перечисление для метода createEnemy(forceBomb: ForceBomb) в котром будет указываться какой тип объекта будет создаваться для отображения. Всего может появиться два объекта: бомба или пингвин
-enum ForceBomb {
-    case never, always, random
+enum EnemyType: CaseIterable {
+    case penguin, bomb, witch, random
 }
 // Перечисление для метода tossEnemies() используется для выбора какие объекты появятся и сколько
 enum SequenceType: CaseIterable {
@@ -82,6 +82,8 @@ class GameScene: SKScene {
     // Task 1
     var penguin: SKSpriteNode!
     var bomb: SKSpriteNode!
+    // Task 2
+    var witch: SKSpriteNode!
     // Task 3
     var gameOverLabel: SKLabelNode!
     
@@ -179,12 +181,20 @@ class GameScene: SKScene {
         
         for case let node as SKSpriteNode in nodesAtPoint {
             // Если имя ноды enemy ПИНГВИН
-            if node.name == "enemy" {
+            if node.name == "enemy" || node.name == "witch"{
                 // destroy the penguin with animation
                 if let emitter = SKEmitterNode(fileNamed: "sliceHitEnemy") {
                     emitter.position = node.position
                     addChild(emitter)
                 }
+                
+                // Изменение количества очков
+                if node.name == "enemy" {
+                    score += 1
+                } else {
+                    score += 3
+                }
+
                 // удалили имя ноды и прекратили взаимодействие с другими предметами
                 node.name = ""
                 node.physicsBody?.isDynamic = false
@@ -197,8 +207,7 @@ class GameScene: SKScene {
                 let seq = SKAction.sequence([group, .removeFromParent()])
                 node.run(seq)
                 
-                // Изменение количества очков
-                score += 1
+                
                 // Удаление ноды из массива созданных нод
                 if let index = activeEnemies.firstIndex(of: node) {
                     activeEnemies.remove(at: index)
@@ -317,7 +326,7 @@ class GameScene: SKScene {
     }
     
     // Создание врага(предмета на экране): выбирается создать пингвина или бомбу в зависимости от принятого параметра, задается положение появления, скорость вращения, направление движения
-    func createEnemy(forceBomb: ForceBomb = .random) {
+    func createEnemy(getCharacter: EnemyType = .random) {
         
         penguin = SKSpriteNode(imageNamed: "penguin")
         penguin.name = "penguin"
@@ -325,15 +334,20 @@ class GameScene: SKScene {
         bomb = SKSpriteNode(imageNamed: "sliceBomb")
         bomb.name = "bomb"
         
+        witch = SKSpriteNode(imageNamed: "witch")
+        witch.name = "witch"
+        
         let enemy: SKSpriteNode
-        //ХЗ зачем было указано от 0 до 6
+        
         var enemyType = SKSpriteNode()
         // Если запустить бомбу указано как never то тип enemy будет 1
-        if forceBomb == .never {
+        if getCharacter == .penguin {
             enemyType = penguin
         // Если запустить бомбу указано как always то тип врага будет 0 - бомба
-        } else if forceBomb == .always {
+        } else if getCharacter == .bomb {
             enemyType = bomb
+        } else if getCharacter == .witch {
+            enemyType = witch
         }
         // Если бомба
         if enemyType == bomb {
@@ -365,11 +379,16 @@ class GameScene: SKScene {
                 enemy.addChild(emitter)
             }
             
-        } else {
-            // Если не бомба, то создать пингвина
+        } else if enemyType == penguin{
+            // Cоздать пингвина
             enemy = penguin
             run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
             enemy.name = "enemy"
+        } else {
+            // Создать ведьму
+            enemy = witch
+            run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
+            enemy.name = "witch"
         }
         
         // Указание места появления enemy
@@ -432,12 +451,12 @@ class GameScene: SKScene {
             for (index, node) in activeEnemies.enumerated().reversed() {
                 if node.position.y < -140 {
                     node.removeAllActions()
-                    if node.name == "enemy" {
+                    if node.name == "enemy"  || node.name == "witch"{
                         node.name = ""
                         sabtractLife()
-                        
                         node.removeFromParent()
                         activeEnemies.remove(at: index)
+                        
                     } else if node.name == "bombContainer" {
                         node.name = ""
                         node.removeFromParent()
@@ -475,6 +494,7 @@ class GameScene: SKScene {
     // Появление врагов в зависимости от последовательности
     func tossEnemies() {
         guard isGameEnded == false else { return }
+        let randomType = EnemyType.allCases.randomElement()
         popupTime *= 0.991
         chainDelay *= 0.99
         physicsWorld.speed *= 1.02
@@ -484,44 +504,44 @@ class GameScene: SKScene {
         // Перечисление действий в зависимости от типа последовательности
         switch sequenceType {
         case .oneNoBomb:
-            createEnemy(forceBomb: .never)
+            createEnemy(getCharacter: .penguin)
         case .one:
             createEnemy()
         case .twoWithOneBomb:
-            createEnemy(forceBomb: .never)
-            createEnemy(forceBomb: .always)
+            createEnemy(getCharacter: .penguin)
+            createEnemy(getCharacter: .bomb)
         case .two:
             createEnemy()
             createEnemy()
         case .three:
-            createEnemy()
-            createEnemy()
-            createEnemy()
+            createEnemy(getCharacter: .witch)
+            createEnemy(getCharacter: .penguin)
+            createEnemy(getCharacter: .penguin)
         case .four:
-            createEnemy()
-            createEnemy()
-            createEnemy()
-            createEnemy()
+            createEnemy(getCharacter: randomType!)
+            createEnemy(getCharacter: .penguin)
+            createEnemy(getCharacter: .penguin)
+            createEnemy(getCharacter: .witch)
         case .chain:
-            createEnemy()
+            createEnemy(getCharacter: randomType!)
             DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 5.0)) {
-                [weak self] in self?.createEnemy() }
+                [weak self] in self?.createEnemy(getCharacter: .penguin) }
             DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 5.0 * 2)) {
-                [weak self] in self?.createEnemy() }
+                [weak self] in self?.createEnemy(getCharacter: randomType!) }
             DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 5.0 * 3)) {
-                [weak self] in self?.createEnemy() }
+                [weak self] in self?.createEnemy(getCharacter: .penguin) }
             DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 5.0 * 4)) {
-                [weak self] in self?.createEnemy() }
+                [weak self] in self?.createEnemy(getCharacter: randomType!) }
         case .fastChain:
-            createEnemy()
+            createEnemy(getCharacter: randomType!)
             DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 10.0)) {
-                [weak self] in self?.createEnemy() }
+                [weak self] in self?.createEnemy(getCharacter: randomType!) }
             DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 10.0 * 2)) {
-                [weak self] in self?.createEnemy() }
+                [weak self] in self?.createEnemy(getCharacter: .penguin) }
             DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 10.0 * 3)) {
-                [weak self] in self?.createEnemy() }
+                [weak self] in self?.createEnemy(getCharacter: .witch) }
             DispatchQueue.main.asyncAfter(deadline: .now() + (chainDelay / 10.0 * 4)) {
-                [weak self] in self?.createEnemy() }
+                [weak self] in self?.createEnemy(getCharacter: .penguin) }
         }
         sequencePosition += 1
         nextSequenceQueued = false
