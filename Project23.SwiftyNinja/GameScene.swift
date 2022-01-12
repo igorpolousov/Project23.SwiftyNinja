@@ -385,7 +385,7 @@ class GameScene: SKScene {
             run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
             enemy.name = "enemy"
         } else {
-            // Создать ведьму
+            //  Task 3 Создать ведьму
             enemy = witch
             run(SKAction.playSoundFileNamed("launch.caf", waitForCompletion: false))
             enemy.name = "witch"
@@ -398,6 +398,11 @@ class GameScene: SKScene {
         // Указание скорости вращения и скорости по вектору по Х
         let randomAngularVelocity = CGFloat.random(in: -3...3)
         let randomXvelocity: Int
+        // Task 3 изменение скорости witch
+        var multy = 40
+        if enemy.name == "witch" {
+            multy += 7
+        }
         
         // Скорость по Х задается в зависимости от места появления enemy
         if randomPosition.x < 256 {
@@ -412,7 +417,7 @@ class GameScene: SKScene {
         // Скорость по вектору Y задается случайным образом
         let randomYvelocity = Int.random(in: 24...32)
         enemy.physicsBody = SKPhysicsBody(circleOfRadius: 64)
-        enemy.physicsBody?.velocity = CGVector(dx: randomXvelocity * 40, dy: randomYvelocity * 40)
+        enemy.physicsBody?.velocity = CGVector(dx: randomXvelocity * multy, dy: randomYvelocity * multy)
         enemy.physicsBody?.angularVelocity = randomAngularVelocity
         enemy.physicsBody?.collisionBitMask = 0
         
